@@ -90,6 +90,10 @@ public class LaboonCoin {
     
     public boolean validHash(int difficulty, int hash) {
 	   String hex=Integer.toHexString(hash);
+       int l = hex.length();
+       for(int j=0; j<(8-l);j++){
+            hex="0" + hex;
+       }
        boolean valid=true;
         for(int i=0; i<difficulty; i++){
             if(hex.charAt(i)!='0') valid=false;
