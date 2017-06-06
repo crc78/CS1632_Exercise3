@@ -12,6 +12,7 @@ public class LaboonCoin {
           int i = 0;
           while(i<numZeros){
             hex += "0";
+            i++;
           }
         }
         hex += Integer.toString(value);
@@ -147,7 +148,7 @@ public class LaboonCoin {
 	int hashVal = 0;
 	boolean foundNonce = false;
 	while (!foundNonce) {
-    
+
 	    toTry = String.format("%08x", prevHash) + String.format("%08x", nonce) + data;
 	    // Uncomment for debugging purposes
 	    // System.out.print("Trying: " + toTry + ".. ");
