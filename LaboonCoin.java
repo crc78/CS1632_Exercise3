@@ -4,21 +4,6 @@ public class LaboonCoin {
 
     public ArrayList<String> blockchain = new ArrayList<String>();
 
-    public static String makeHex(int value){
-        int length = Integer.toString(value).length();
-        int numZeros = 8 - length;
-        String hex = "";
-        if(numZeros > 0){
-          int i = 0;
-          while(i<numZeros){
-            hex += "0";
-            i++;
-          }
-        }
-        hex += Integer.toString(value);
-        return hex;
-    }
-
     /**
      * Given a block's data, the previous hash, a nonce, and a final
      * hash which is the hash of the previous three data elements,
@@ -38,7 +23,8 @@ public class LaboonCoin {
      */
 
     public String createBlock(String data, int prevHash, int nonce, int hash) {
-      String block = data + "|" + makeHex(prevHash) + "|" + makeHex(nonce)+ "|" + makeHex(hash);
+
+      String block = data + "|" + String.format("%08x", prevHash) + "|" + String.format("%08x", nonce)+ "|" + String.format("%08x", hash);
       return block;
     }
 
@@ -56,6 +42,7 @@ public class LaboonCoin {
            bc += "\n";
          }
          i++;
+
        }
        return bc;
     }
@@ -196,9 +183,10 @@ public class LaboonCoin {
 				     + String.format("%08x", nonce)
                      + data);
 		System.out.println("Final hash " + String.format("%08x", finalHash) + "!");
-		prevHash = finalHash;
+
 
 		String newBlock = createBlock(data, prevHash, nonce, finalHash);
+    prevHash = finalHash;
 		blockchain.add(newBlock);
 	    }
 
