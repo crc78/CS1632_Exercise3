@@ -55,6 +55,7 @@ public class LaboonCoin {
          if( i != (chainSize - 1)){
            bc += "\n";
          }
+         i++;
        }
        return bc;
     }
@@ -154,7 +155,7 @@ public class LaboonCoin {
 	    // System.out.print("Trying: " + toTry + ".. ");
 
 	    hashVal = hash(toTry);
-	    System.out.println("hash: " + String.format("%08x", hashVal));
+	    //System.out.println("hash: " + String.format("%08x", hashVal));
 	    if (validHash(difficulty, hashVal)) {
 		foundNonce = true;
 	    } else {
